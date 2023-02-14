@@ -1,6 +1,5 @@
 export type GameboardProps = {
   randomColors: Color[];
-  nickName: string;
 };
 
 export type Color = {
@@ -29,13 +28,4 @@ export type Player = {
   name: string;
   points: number;
   active: boolean;
-};
-
-export type PlayerFormProps = {
-  setNickName: (nickname: string) => void;
-  nickName: string | null;
-};
-
-export type MainViewPropsProps = {
-  nickName: string;
 };

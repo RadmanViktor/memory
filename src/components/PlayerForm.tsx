@@ -1,18 +1,17 @@
+import React from "react";
 import styled from "styled-components";
 import { useRef } from "react";
 import { Color } from "../types";
 import { useNavigate } from "react-router-dom";
-import { PlayerFormProps } from "../types";
 import data from "../data";
-import React from "react";
 
-const PlayerForm = ({ setNickName }: PlayerFormProps) => {
+const PlayerForm = () => {
   const colors: Color[] = data();
   const inputValue: any = useRef(null);
   const navigate = useNavigate();
 
   const playHandler = () => {
-    setNickName(inputValue.current.value);
+    sessionStorage.setItem('playerName', inputValue.current.value)
     navigate("/game", { replace: true });
   };
 
@@ -38,7 +37,7 @@ const PlayerForm = ({ setNickName }: PlayerFormProps) => {
           ))}
         </TitleStyled>
         <input
-          placeholder="Nickname..."
+          placeholder="Playername..."
           type="text"
           name="PlayerName"
           ref={inputValue}

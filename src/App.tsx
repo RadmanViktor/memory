@@ -5,15 +5,14 @@ import { useState } from "react";
 import React from "react";
 
 function App() {
-  const [nickName, setNickName] = useState("");
   return (
     <div className="App" style={{ backgroundColor: "#2B2A33" }}>
       <Routes>
-        <Route path="/game" element={<MainView nickName={nickName} />} />
+        <Route path="/game" element={<MainView />} />
         <Route
           path="/"
           element={
-            <CreatePlayer nickName={nickName} setNickName={setNickName} />
+            <CreatePlayer/>
           }
         />
       </Routes>

@@ -1,17 +1,16 @@
-import styled from "styled-components";
-import { PlayerFormProps } from "../types";
-import PlayerForm from "../components/PlayerForm";
 import React from "react";
+import styled from "styled-components";
+import PlayerForm from "../components/PlayerForm";
 
-const CreatePlayer = ({ setNickName, nickName }: PlayerFormProps) => {
+const CreatePlayer = () => {
   return (
-    <PlayerFormContainer>
-      <PlayerForm setNickName={setNickName} nickName={nickName}></PlayerForm>
-    </PlayerFormContainer>
+    <PlayerFormContainerStyled>
+      <PlayerForm></PlayerForm>
+    </PlayerFormContainerStyled>
   );
 };
 
-const PlayerFormContainer = styled.div`
+const PlayerFormContainerStyled = styled.div`
   height: 100%;
   width: 100%;
   display: flex;

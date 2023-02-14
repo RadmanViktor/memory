@@ -4,7 +4,7 @@ import Card from "./Card";
 import styled from "styled-components";
 import { useState, useEffect, useCallback } from "react";
 
-const Gameboard = ({ randomColors, nickName }: GameboardProps) => {
+const Gameboard = ({ randomColors }: GameboardProps) => {
   let cardsInitialData: ICard[] = randomColors.map((color) => {
     return { ...color, active: false, removed: false };
   });
@@ -91,11 +91,11 @@ const Gameboard = ({ randomColors, nickName }: GameboardProps) => {
         <GameboardStyled
           style={{ pointerEvents: disableGameboard ? "none" : "auto" }}
         >
-          <NickNameContainerStyled>
+          <PlayerNameContainerStyled>
             <h1>
-              {nickName} : {points} points
+              {sessionStorage.getItem('playerName')} : {points} points
             </h1>
-          </NickNameContainerStyled>
+          </PlayerNameContainerStyled>
           <GridContainerStyled>
             {cards.length > 1 &&
               cards.map((card, index) => (
@@ -113,7 +113,7 @@ const Gameboard = ({ randomColors, nickName }: GameboardProps) => {
         </GameboardStyled>
       ) : (
         <CompletedStyled onClick={() => playAgainHandler()}>
-          {nickName ? nickName : "You"} completed with {points} points!
+          {sessionStorage.getItem('playerName') ? sessionStorage.getItem('playerName') : "You"} completed with {points} points!
           <br />
           <button>Play again?</button>
         </CompletedStyled>
@@ -122,7 +122,7 @@ const Gameboard = ({ randomColors, nickName }: GameboardProps) => {
   );
 };
 
-const NickNameContainerStyled = styled.div`
+const PlayerNameContainerStyled = styled.div`
   display: flex;
   justify-content: center;
   font-family: "Poppins", sans-serif;
