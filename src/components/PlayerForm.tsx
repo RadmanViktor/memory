@@ -15,7 +15,7 @@ const PlayerForm = () => {
     navigate("/game", { replace: true });
   };
 
-  const title = () => {
+  const titleCharArr = () => {
     var titleName: string = "Colour Memory";
     var titleChars: string[] = [];
 
@@ -30,7 +30,7 @@ const PlayerForm = () => {
     <>
       <FormStyled>
         <TitleStyled>
-          {title().map((char, index) => (
+          {titleCharArr().map((char, index) => (
             <div style={{fontWeight:"300", color: colors[index].color }} key={index}>
               {char}
             </div>

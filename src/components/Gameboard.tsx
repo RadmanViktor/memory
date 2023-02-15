@@ -21,7 +21,7 @@ const Gameboard = () => {
   const [disableGameboard, setDisableGameboard] = useState<boolean>(false);
   const [points, setPoints] = useState<number>(0);
   const [cards, setCards] = useState<ICard[]>(cardsInitialData(generateRandomColors()));
-  const [isCompleted, setIsCompleted] = useState<boolean>(false);
+  const [isCompleted, setIsCompleted] = useState<boolean>(true);
 
   const updatePoints = useCallback(
     (operator: string) => {
@@ -35,7 +35,7 @@ const Gameboard = () => {
     },
     [points]
   );
-
+    
   useEffect(() => {
     if (cards.every((card) => card.removed)) {
       setIsCompleted(true);
@@ -43,13 +43,14 @@ const Gameboard = () => {
   }, [setIsCompleted, cards]);
 
   useEffect(() => {
-    let activeCards = cards.filter((card) => {
+    let activeCards:ICard[] = cards.filter((card) => {
       return card.active === true && !card.removed;
     });
 
     if (activeCards.length === 2) {
-      const [cardOne, cardTwo] = activeCards;
-
+      const [cardOne, cardTwo ] = activeCards;
+      // Hur kan jag kolla så att korten är likadana?
+      
       if (cardOne.color === cardTwo.color) {
         updatePoints("+");
         setDisableGameboard(true);
@@ -75,7 +76,7 @@ const Gameboard = () => {
     cardTwo: ICard,
     removed: boolean,
     active: boolean
-  ) => {
+  ):ICard[] => {
     return cards.map((card) => {
       if (card.id === cardOne.id || card.id === cardTwo.id) {
         return { ...card, removed, active };
@@ -117,10 +118,10 @@ const Gameboard = () => {
           </GridContainerStyled>
         </GameboardStyled>
       ) : (
-        <CompletedStyled onClick={() => playAgainHandler()}>
+        <CompletedStyled>
           {sessionStorage.getItem('playerName')} completed with {points} points!
           <br />
-          <button>Play again?</button>
+          <button onClick={() => playAgainHandler()}>Play again?</button>
         </CompletedStyled>
       )}
     </>

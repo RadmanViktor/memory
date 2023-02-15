@@ -1,8 +1,7 @@
+import React from "react";
 import { Routes, Route } from "react-router-dom";
 import MainView from "./pages/MainView";
 import CreatePlayer from "./pages/CreatePlayer";
-import { useState } from "react";
-import React from "react";
 
 function App() {
   return (
