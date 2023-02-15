@@ -1,17 +1,26 @@
 import React from "react";
-import { ICard, GameboardProps } from "../types";
+import { ICard, Color } from "../types";
 import Card from "./Card";
 import styled from "styled-components";
+import {generateRandomColors} from '../data';
 import { useState, useEffect, useCallback } from "react";
 
-const Gameboard = ({ randomColors }: GameboardProps) => {
-  let cardsInitialData: ICard[] = randomColors.map((color) => {
-    return { ...color, active: false, removed: false };
-  });
+const Gameboard = () => {
+  
+  let cardsInitialData = (colors:Color[]):ICard[] => {
+    let cards:ICard[] = []
+
+    colors.map((color) => {
+      let card:ICard = { ...color, active: false, removed: false };
+      cards.push(card);
+    });
+
+    return cards;
+  }
 
   const [disableGameboard, setDisableGameboard] = useState<boolean>(false);
   const [points, setPoints] = useState<number>(0);
-  const [cards, setCards] = useState<ICard[]>(cardsInitialData);
+  const [cards, setCards] = useState<ICard[]>(cardsInitialData(generateRandomColors()));
   const [isCompleted, setIsCompleted] = useState<boolean>(false);
 
   const updatePoints = useCallback(
@@ -76,11 +85,7 @@ const Gameboard = ({ randomColors }: GameboardProps) => {
   };
 
   const playAgainHandler = () => {
-    var defaultValueCards = cards.map((card) => {
-      return { ...card, active: false, removed: false };
-    });
-
-    setCards(defaultValueCards);
+    setCards(cardsInitialData(generateRandomColors()));
     setIsCompleted(false);
     setPoints(0);
   };
@@ -113,7 +118,7 @@ const Gameboard = ({ randomColors }: GameboardProps) => {
         </GameboardStyled>
       ) : (
         <CompletedStyled onClick={() => playAgainHandler()}>
-          {sessionStorage.getItem('playerName') ? sessionStorage.getItem('playerName') : "You"} completed with {points} points!
+          {sessionStorage.getItem('playerName')} completed with {points} points!
           <br />
           <button>Play again?</button>
         </CompletedStyled>

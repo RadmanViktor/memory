@@ -1,7 +1,3 @@
-export type GameboardProps = {
-  randomColors: Color[];
-};
-
 export type Color = {
   id: number;
   color: string;

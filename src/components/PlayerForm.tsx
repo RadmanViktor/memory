@@ -3,10 +3,10 @@ import styled from "styled-components";
 import { useRef } from "react";
 import { Color } from "../types";
 import { useNavigate } from "react-router-dom";
-import data from "../data";
+import {generateRandomColors} from "../data";
 
 const PlayerForm = () => {
-  const colors: Color[] = data();
+  const colors: Color[] = generateRandomColors();
   const inputValue: any = useRef(null);
   const navigate = useNavigate();
 

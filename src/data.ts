@@ -69,4 +69,19 @@ function colors(): Color[] {
   ];
 }
 
+export const generateRandomColors = (): Color[] => {
+  const colorArr = colors();
+
+  let arr: Color[] = [];
+  while (1 <= colorArr.length) {
+    let randomIndex = Math.floor(Math.random() * colorArr.length);
+    let color = colorArr[randomIndex];
+
+    arr.push(color);
+    colorArr.splice(randomIndex, 1);
+  }
+
+  return arr;
+};
+
 export default colors;
