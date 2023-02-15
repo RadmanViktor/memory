@@ -31,7 +31,7 @@ const PlayerForm = () => {
       <FormStyled>
         <TitleStyled>
           {title().map((char, index) => (
-            <div style={{ color: colors[index].color }} key={index}>
+            <div style={{fontWeight:"300", color: colors[index].color }} key={index}>
               {char}
             </div>
           ))}
