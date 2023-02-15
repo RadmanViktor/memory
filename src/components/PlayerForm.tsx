@@ -64,7 +64,9 @@ const FormStyled = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-
+  box-shadow: -4px -9px 175px 29px rgba(0,0,0,0.75);
+  -webkit-box-shadow: -4px -9px 175px 29px rgba(0,0,0,0.75);
+  -moz-box-shadow: -4px -9px 175px 29px rgba(0,0,0,0.75);
   input,button {
     font-family: "Poppins", sans-serif;
     font-weight: 300;
