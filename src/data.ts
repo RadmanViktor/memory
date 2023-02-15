@@ -1,6 +1,6 @@
 import { Color } from "./types";
 
-function colors(): Color[] {
+function getColors(): Color[] {
   return [
     {
       id: 1,
@@ -70,18 +70,16 @@ function colors(): Color[] {
 }
 
 export const generateRandomColors = (): Color[] => {
-  const colorArr = colors();
+  const colors = getColors();
 
   let arr: Color[] = [];
-  while (1 <= colorArr.length) {
-    let randomIndex = Math.floor(Math.random() * colorArr.length);
-    let color = colorArr[randomIndex];
+  while (1 <= colors.length) {
+    let randomIndex = Math.floor(Math.random() * colors.length);
+    let color = colors[randomIndex];
 
     arr.push(color);
-    colorArr.splice(randomIndex, 1);
+    colors.splice(randomIndex, 1);
   }
 
   return arr;
 };
-
-export default colors;
